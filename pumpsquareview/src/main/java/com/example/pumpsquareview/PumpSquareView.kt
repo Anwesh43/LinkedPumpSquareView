@@ -214,4 +214,12 @@ class PumpSquareView(ctx : Context) : View(ctx) {
         }
     }
 
+    companion object {
+
+        fun create(activity : Activity) : PumpSquareView {
+            val view : PumpSquareView = PumpSquareView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
