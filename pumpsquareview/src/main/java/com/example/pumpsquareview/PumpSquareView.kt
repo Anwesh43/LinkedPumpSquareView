@@ -153,7 +153,7 @@ class PumpSquareView(ctx : Context) : View(ctx) {
             state.startUpdating(cb)
         }
 
-        fun getNext(dir : Int, cb : () -> Unit) {
+        fun getNext(dir : Int, cb : () -> Unit) : PSNode {
             var curr : PSNode? = prev
             if (dir == 1) {
                 curr = next
