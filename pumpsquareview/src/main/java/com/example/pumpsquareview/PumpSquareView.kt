@@ -18,8 +18,8 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
-val scGap : Float = 0.02f / parts
+val parts : Int = 3
+val scGap : Float = 0.03f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 6.9f
 val lSizeFactor : Float = 9.8f
