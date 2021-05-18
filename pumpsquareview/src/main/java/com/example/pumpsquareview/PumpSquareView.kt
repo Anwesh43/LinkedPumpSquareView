@@ -32,3 +32,31 @@ fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
 
+fun Canvas.drawPumpSquare(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val lSize : Float = Math.min(w, h) / lSizeFactor
+    val depth : Float = Math.min(w, h) / depthFactor
+    val sf : Float = scale.sinify()
+    val sf1 : Float = sf.divideScale(0, parts)
+    val sf2 : Float = sf.divideScale(1, parts)
+    val sf3 : Float = sf.divideScale(2, parts)
+    save()
+    translate(w / 2, h / 2)
+    drawRect(RectF(-size / 2, 0f + depth * sf3, size / 2, size * sf1), paint)
+    for (j in 0..1) {
+        save()
+        translate(-size / 4 + (size / 2) * j, depth * sf3)
+        drawLine(0f, 0f, 0f,  -lSize * sf2, paint)
+        restore()
+    }
+    restore()
+}
+
+fun Canvas.drawPSNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) /strokeFactor
+    drawPumpSquare(scale, w, h, paint)
+}
