@@ -1,0 +1,3 @@
+include ':pumpsquareview'
+include ':app'
+rootProject.name = "LinkedPumpSquareView"
